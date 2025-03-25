@@ -38,7 +38,7 @@ echo "ITERATION: ${ITERATION} PER_REPLICA_BATCH_SIZE: ${PER_REPLICA_BATCH_SIZE} 
 export DESIGN_NAME=ariane_asap7
 export MACRO_COUNT=134
 ## Update the following script accordingly with ./run_script/{cong_asap7.sh,cong_tsmc7.sh,cong_ng45.sh}, use tsmc7 one for ariane, ariane_X2 or X4 versions.
-bash /workspace/run_script/cong_tsmc7.sh
+bash /workspace/run_script/cong_asap7.sh
 
 export NETLIST_FILE=/workspace/Testcases/${DESIGN_NAME}/netlist.pb.txt
 export INIT_PLACEMENT=/workspace/Testcases/${DESIGN_NAME}/initial.plc

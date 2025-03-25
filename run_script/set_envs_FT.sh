@@ -34,9 +34,11 @@ export STDCELL_PLACER="fd"
 
 echo "ITERATION: ${ITERATION} PER_REPLICA_BATCH_SIZE: ${PER_REPLICA_BATCH_SIZE} NUM_EPISODES_PER_ITERATION: ${NUM_EPISODES_PER_ITERATION} NUM_EPOCHS: ${NUM_EPOCHS} STDCELL_PLACER: ${STDCELL_PLACER}"
 
-export DESIGN_NAME=ariane_X4
-export MACRO_COUNT=533
-bash /workspace/run_script/cong_tsmc7.sh
+## Possible DESIGN Name and Corresponding MACRO COUNT are mempool_group_ng45(325) mempool_group_asap7(325) bp_ng45(221) bp_asap7(221) ariane_asap7(134) ariane_X4_xflip_yflip(533) ariane_X2_xflip(267) ariane133_ng45(134) ariane(134)
+export DESIGN_NAME=ariane_asap7
+export MACRO_COUNT=134
+## Update the following script accordingly with ./run_script/{cong_asap7.sh,cong_tsmc7.sh,cong_ng45.sh}, use tsmc7 one for ariane, ariane_X2 or X4 versions.
+bash /workspace/run_script/cong_asap7.sh
 
 export NETLIST_FILE=/workspace/Testcases/${DESIGN_NAME}/netlist.pb.txt
 export INIT_PLACEMENT=/workspace/Testcases/${DESIGN_NAME}/initial.plc
