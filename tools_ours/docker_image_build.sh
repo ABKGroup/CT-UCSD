@@ -1,0 +1,1 @@
+docker build --no-cache --build-arg base_image=nvidia/cuda:12.2.2-cudnn8-devel-ubuntu22.04 --build-arg python_version=python3.9 --build-arg tf_agents_version="tf-agents[reverb]" --tag circuit_training:corepy39cu12 -f ./docker/ubuntu_circuit_training .
