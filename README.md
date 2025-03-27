@@ -52,7 +52,7 @@ source ./run_script/set_envs_collect.sh
 ./run_script/run_collect5.sh
 ```
 
-The above example runs 256 collector jobs in five different servers.
+The above example runs 256 collector jobs across five different servers, each with 96 CPU threads, and runs one training job, one evaluation job, and a reverb server on the main server. The main server is equipped with eight NVIDIA-V100 GPUs and 96 CPU threads.
 
 ---
 
@@ -89,10 +89,87 @@ source ./run_script/set_envs_collect.sh
 source ./run_script/set_envs_collect.sh
 ./run_script/run_collect5.sh
 ```
-The above example runs 256 collector jobs in five different servers.
+The above example runs 256 collector jobs across five different servers, each with 96 CPU threads, and runs one training job, one evaluation job, and a reverb server on the main server. The main server is equipped with eight NVIDIA-V100 GPUs and 96 CPU threads.
 
-### **Job Configuration**  
-- Again, the given example will use **256 collector jobs** and **1 training job** for the runs.
+---
+### **Pre-training Model with MemPoolGroup NG45**
+The following example shows pre-training the model with seven variants of MemPoolGroup NG45: x-flip, y-flip, xy-flip, shift, shift-x-flip, shift-y-flip, shift-xy-flip. 
+
+```bash
+## Update ./run_script/run_script_pt_mpg/set_evs_PT.sh (Lines: 61-89 and 101)
+source ./run_script/run_script_pt_mpg/set_evs_PT.sh
+./run_script/run_script_pt_mpg/reverb_train_eval_PT.sh
+
+## Collector Server 1
+## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+./run_script/run_script_pt_mpg/run_collect1_PT.sh
+
+## Collector Server 2
+## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+./run_script/run_script_pt_mpg/run_collect2_PT.sh
+
+## Collector Server 3
+## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+./run_script/run_script_pt_mpg/run_collect3_PT.sh
+
+## Collector Server 4
+## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+./run_script/run_script_pt_mpg/run_collect4_PT.sh
+
+## Collector Server 5
+## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+./run_script/run_script_pt_mpg/run_collect5_PT.sh
+
+```
+
+The above example runs 252 collector jobs (36 for each variant of MemPoolGroup-NG45) across five different servers, each with 96 CPU threads. In addition, it runs one training job, one evaluation job, and a reverb server on the main server, which is equipped with eight NVIDIA V100 GPUs and 96 CPU threads.
+
+Once pre-training is complete, you can use the checkpoint and policy from the `/workspace/logs/run_YOUR_PRETRAIN_MODEL/<seed>/policies` directory to fine-tune the model on the target design.
+
+---
+
+### **Pre-training Model with Scaled Versions of CT-Ariane**
+The following example demonstrates pre-training the model using both x-flip and y-flip variants of CT-Ariane, CT-Ariane-X2, and CT-Ariane-X4 (i.e., six netlists).
+
+```bash 
+## Update ./run_script/run_script_pt_ariane_x4/set_evs_PT.sh (Lines: 61-86 and 98)
+source ./run_script/run_script_pt_ariane_x4/set_evs_PT.sh
+./run_script/run_script_pt_ariane_x4/reverb_train_eval_PT.sh
+
+## Collector Server 1
+## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+./run_script/run_script_pt_ariane_x4/run_collect1_PT.sh
+
+## Collector Server 2
+## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+./run_script/run_script_pt_ariane_x4/run_collect2_PT.sh
+
+## Collector Server 3
+## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+./run_script/run_script_pt_ariane_x4/run_collect3_PT.sh 
+
+## Collector Server 4
+## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+./run_script/run_script_pt_ariane_x4/run_collect4_PT.sh
+
+## Collector Server 5
+## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+./run_script/run_script_pt_ariane_x4/run_collect5_PT.sh
+```
+
+The above example runs 252 collector jobs (42 for each variant of CT-Ariane-X4) across five different servers, each with 96 CPU threads. In addition, it runs one training job, one evaluation job, and a reverb server on the main server, which is equipped with eight NVIDIA V100 GPUs and 96 CPU threads.
+
+Once pre-training is complete, you can use the checkpoint and policy from the `/workspace/logs/run_YOUR_PRETRAIN_MODEL/<seed>/policies` directory to fine-tune the model on the target design.
 
 ---
 
