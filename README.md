@@ -1,5 +1,5 @@
-This repository provides the scripts and testcases used to run [Circuit Training](https://github.com/google-research/circuit_training/commits/4c6fd98c20e67f9f9037a37b87ab2043a65d9ccf/)
-at UCSD. We copied the original Circuit Training (CT) repository and made the necessary modifications to run our experiments. To run CT on our testcases, follow the instructions below.
+This repository provides scripts and testcases that we have used to run [Circuit Training](https://github.com/google-research/circuit_training/commits/4c6fd98c20e67f9f9037a37b87ab2043a65d9ccf/)
+at UCSD. We copied the original Circuit Training (CT) repository and made the necessary modifications to run our experiments. To run CT as we have, on our testcases, please follow the instructions below.
 
 ### **Building the Docker Environment**  
 To build the Docker environment, use the following commands:  
@@ -52,7 +52,7 @@ source ./run_script/set_envs_collect.sh
 ./run_script/run_collect5.sh
 ```
 
-The above example runs 256 collector jobs across five different servers, each with 96 CPU threads, and runs one training job, one evaluation job, and a reverb server on the main server. The main server is equipped with eight NVIDIA-V100 GPUs and 96 CPU threads.
+The above example runs 256 collector jobs across five different servers, each with 96 CPU threads, and runs one training job, one evaluation job, and a reverb server on the main server. The main server is equipped with eight NVIDIA-V100 GPUs and 96 CPU threads. Note that as described in Figure 6 of the [ISPD22](https://dl.acm.org/doi/abs/10.1145/3505170.3511478) paper, the number of GPUs used will influence the training outcome.
 
 ---
 
@@ -89,7 +89,7 @@ source ./run_script/set_envs_collect.sh
 source ./run_script/set_envs_collect.sh
 ./run_script/run_collect5.sh
 ```
-The above example runs 256 collector jobs across five different servers, each with 96 CPU threads, and runs one training job, one evaluation job, and a reverb server on the main server. The main server is equipped with eight NVIDIA-V100 GPUs and 96 CPU threads.
+The above example runs 256 collector jobs across five different servers, each with 96 CPU threads, and runs one training job, one evaluation job, and a reverb server on the main server. The main server is equipped with eight NVIDIA-V100 GPUs and 96 CPU threads. Note that as described in Figure 6 of the [ISPD22](https://dl.acm.org/doi/abs/10.1145/3505170.3511478) paper, the number of GPUs used will influence the training outcome.
 
 ---
 ### **Pre-training Model with MemPoolGroup NG45**
@@ -174,7 +174,7 @@ Once pre-training is complete, you can use the checkpoint and policy from the `/
 ---
 
 ### **Testcases**  
-Here are the open testcases on which we ran CT from scratch and fine-tuned 
+Here are the open testcases on which we have run CT from scratch and fine-tuned 
 the pre-trained model released by the authors of the Circuit Training paper.
 Note that we set "MACRO\_COUNT" to the number of macros in the design plus one.
 
