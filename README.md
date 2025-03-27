@@ -1,5 +1,5 @@
-This repository provides the scripts and test cases used to run [Circuit Training](https://github.com/google-research/circuit_training)
-at UCSD. We copied the original Circuit Training (CT) repository and made the necessary modifications to run our experiments. To run CT on our test cases, follow the instructions below.
+This repository provides the scripts and testcases used to run [Circuit Training](https://github.com/google-research/circuit_training/commits/4c6fd98c20e67f9f9037a37b87ab2043a65d9ccf/)
+at UCSD. We copied the original Circuit Training (CT) repository and made the necessary modifications to run our experiments. To run CT on our testcases, follow the instructions below.
 
 ### **Building the Docker Environment**  
 To build the Docker environment, use the following commands:  
@@ -57,7 +57,7 @@ The above example runs 256 collector jobs across five different servers, each wi
 ---
 
 ### **Fine-tuning the Pre-trained Model**
-First download the pre-trained model released by Circuit Training authors from [here](https://github.com/google-research/circuit_training?tab=readme-ov-file#how-to-use-the-checkpoint).
+First, download the pre-trained model released by Circuit Training authors from [here](https://github.com/google-research/circuit_training?tab=readme-ov-file#how-to-use-the-checkpoint).
 To fine-tune the pre-trained "AlphaChip" model, execute the following commands:  
 ```bash
 ## Update set_envs_FT.sh (Lines: 38, 39, 41, 47 and 48)
@@ -96,33 +96,33 @@ The above example runs 256 collector jobs across five different servers, each wi
 The following example shows pre-training the model with seven variants of MemPoolGroup NG45: x-flip, y-flip, xy-flip, shift, shift-x-flip, shift-y-flip, shift-xy-flip. 
 
 ```bash
-## Update ./run_script/run_script_pt_mpg/set_evs_PT.sh (Lines: 61-89 and 101)
-source ./run_script/run_script_pt_mpg/set_evs_PT.sh
+## Update ./run_script/run_script_pt_mpg/set_envs_PT.sh (Lines: 61-89 and 101)
+source ./run_script/run_script_pt_mpg/set_envs_PT.sh
 ./run_script/run_script_pt_mpg/reverb_train_eval_PT.sh
 
 ## Collector Server 1
-## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
-source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh
 ./run_script/run_script_pt_mpg/run_collect1_PT.sh
 
 ## Collector Server 2
-## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
-source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh
 ./run_script/run_script_pt_mpg/run_collect2_PT.sh
 
 ## Collector Server 3
-## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
-source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh
 ./run_script/run_script_pt_mpg/run_collect3_PT.sh
 
 ## Collector Server 4
-## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
-source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh
 ./run_script/run_script_pt_mpg/run_collect4_PT.sh
 
 ## Collector Server 5
-## Update ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh (Lines: 61-89 and 100)
-source ./run_script/run_script_pt_mpg/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh (Lines: 61-89 and 100)
+source ./run_script/run_script_pt_mpg/set_envs_collect_PT.sh
 ./run_script/run_script_pt_mpg/run_collect5_PT.sh
 
 ```
@@ -137,33 +137,33 @@ Once pre-training is complete, you can use the checkpoint and policy from the `/
 The following example demonstrates pre-training the model using both x-flip and y-flip variants of CT-Ariane, CT-Ariane-X2, and CT-Ariane-X4 (i.e., six netlists).
 
 ```bash 
-## Update ./run_script/run_script_pt_ariane_x4/set_evs_PT.sh (Lines: 61-86 and 98)
-source ./run_script/run_script_pt_ariane_x4/set_evs_PT.sh
+## Update ./run_script/run_script_pt_ariane_x4/set_envs_PT.sh (Lines: 61-86 and 98)
+source ./run_script/run_script_pt_ariane_x4/set_envs_PT.sh
 ./run_script/run_script_pt_ariane_x4/reverb_train_eval_PT.sh
 
 ## Collector Server 1
-## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
-source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh
 ./run_script/run_script_pt_ariane_x4/run_collect1_PT.sh
 
 ## Collector Server 2
-## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
-source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh
 ./run_script/run_script_pt_ariane_x4/run_collect2_PT.sh
 
 ## Collector Server 3
-## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
-source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh
 ./run_script/run_script_pt_ariane_x4/run_collect3_PT.sh 
 
 ## Collector Server 4
-## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
-source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh
 ./run_script/run_script_pt_ariane_x4/run_collect4_PT.sh
 
 ## Collector Server 5
-## Update ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh (Lines: 61-86 and 97)
-source ./run_script/run_script_pt_ariane_x4/set_evs_collect_PT.sh
+## Update ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh (Lines: 61-86 and 97)
+source ./run_script/run_script_pt_ariane_x4/set_envs_collect_PT.sh
 ./run_script/run_script_pt_ariane_x4/run_collect5_PT.sh
 ```
 
@@ -174,7 +174,7 @@ Once pre-training is complete, you can use the checkpoint and policy from the `/
 ---
 
 ### **Testcases**  
-Here are the open test cases on which we ran CT from scratch and fine-tuned 
+Here are the open testcases on which we ran CT from scratch and fine-tuned 
 the pre-trained model released by the authors of the Circuit Training paper.
 Note that we set "MACRO\_COUNT" to the number of macros in the design plus one.
 
@@ -223,7 +223,7 @@ Note that we set "MACRO\_COUNT" to the number of macros in the design plus one.
     - **MACRO_COUNT**: 325
     - Use ./run_scripts/cong_asap7.sh to update the routing resource.
 
-If you want to generate these test cases, please refer to the MacroPlacement repository [here](https://github.com/TILOS-AI-Institute/MacroPlacement).
+If you want to generate these testcases, please refer to the MacroPlacement repository [here](https://github.com/TILOS-AI-Institute/MacroPlacement).
 
 
 ---
